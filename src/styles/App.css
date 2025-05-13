@@ -1,0 +1,319 @@
+/* App.css - Main application layout styling */
+
+/* Base layout and resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #3b82f6;
+  --primary-dark: #1e40af;
+  --primary-light: #60a5fa;
+  --secondary-color: #10b981;
+  --secondary-dark: #047857;
+  --secondary-light: #34d399;
+  --background-color: #f3f4f6;
+  --card-background: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --transition-default: all 0.3s ease;
+  --navbar-height: 64px;
+  --sidebar-width: 16rem; /* 256px */
+  --sidebar-collapsed-width: 5rem; /* 80px */
+  --footer-height: 48px;
+}
+
+html, body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--background-color);
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Main App Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+  background-color: var(--background-color);
+  position: relative;
+}
+
+/* Sidebar states */
+.sidebar {
+  width: var(--sidebar-width);
+  transition: var(--transition-default);
+  z-index: 20;
+}
+
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: var(--transition-default);
+  margin-left: 0;
+  position: relative;
+}
+
+/* Main area adjustments based on sidebar state */
+.sidebar-open .main-content {
+  width: calc(100% - var(--sidebar-width));
+}
+
+.sidebar-collapsed .main-content {
+  width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+/* Main Content Components */
+.navbar {
+  height: var(--navbar-height);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--card-background);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-default);
+}
+
+.navbar.scrolled {
+  box-shadow: var(--shadow);
+}
+
+.main-area {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--background-color);
+  padding: 1.5rem;
+  transition: var(--transition-default);
+}
+
+.footer {
+  height: var(--footer-height);
+  width: 100%;
+  background-color: var(--card-background);
+  border-top: 1px solid var(--border-color);
+  transition: var(--transition-default);
+}
+
+/* Page Content */
+.page-container {
+  animation: fadeIn 0.3s ease-in-out;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card styling for main content elements */
+.card {
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition-default);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    z-index: 30;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .main-content {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  
+  .navbar-toggle {
+    display: block !important;
+  }
+  
+  .main-area {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-area {
+    padding: 0.75rem;
+  }
+  
+  .page-container {
+    padding-bottom: 1rem;
+  }
+}
+
+/* Overlay for mobile sidebar */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@media (max-width: 1024px) {
+  .sidebar.open + .sidebar-overlay {
+    display: block;
+  }
+}
+
+/* Modified App.jsx specific styles to match your component */
+.app-flex-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f3f4f6; /* bg-gray-100 */
+}
+
+.app-main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app-main-content {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #e5e7eb; /* bg-gray-200 */
+  padding: 1rem; /* p-4 */
+}
+
+/* Loading indicators */
+.page-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(59, 130, 246, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Smooth transitions for route changes */
+.route-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.route-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.route-transition-exit {
+  opacity: 1;
+}
+
+.route-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Utility classes for visibility */
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: block !important;
+}
+
+/* Dark mode support - can be toggled with a class on html or body */
+.dark-mode {
+  --primary-color: #60a5fa;
+  --primary-dark: #93c5fd;
+  --primary-light: #3b82f6;
+  --secondary-color: #34d399;
+  --secondary-dark: #a7f3d0;
+  --secondary-light: #10b981;
+  --background-color: #1f2937;
+  --card-background: #111827;
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-tertiary: #d1d5db;
+  --border-color: #374151;
+}
+
+.dark-mode .card {
+  background-color: var(--card-background);
+  border-color: var(--border-color);
+}
+
+.dark-mode .navbar,
+.dark-mode .sidebar,
+.dark-mode .footer {
+  background-color: var(--card-background);
+  border-color: var(--border-color);
+}

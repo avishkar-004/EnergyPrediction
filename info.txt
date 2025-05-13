@@ -1,0 +1,38 @@
+// Directory Structure for the application
+/*
+/src
+  /components
+    /layout
+      Navbar.jsx
+      Footer.jsx
+      Sidebar.jsx
+    /dashboard
+      DashboardCard.jsx
+      SummaryStats.jsx
+    /graphs
+      ConsumptionGraph.jsx
+      PredictionTable.jsx
+    /idealValues
+      IdealValueTable.jsx
+    /reports
+      ReportGenerator.jsx
+  /pages
+    Dashboard.jsx
+    ConsumptionGraphs.jsx
+    IdealValues.jsx
+    Reports.jsx
+  /services
+    api.js
+  /utils
+    dateUtils.js
+    formatters.js
+  App.jsx
+  index.jsx
+  routes.jsx
+*/
+
+
+npm install lucide-react
+npm install react-router-dom
+npm install date-fns
+npm install recharts
