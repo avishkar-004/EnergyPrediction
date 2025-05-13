@@ -13,8 +13,7 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 Step 1: Clone the GitHub Repository
-git clone https://github.com/your-username/your-repo-name.git
-
+git clone https://github.com/avishkar-004/EnergyPrediction.git
 Step 2: Navigate into the project folder
 cd EnergyPrediction
 
