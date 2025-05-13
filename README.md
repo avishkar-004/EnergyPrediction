@@ -10,3 +10,16 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+Step 1: Clone the GitHub Repository
+git clone https://github.com/your-username/your-repo-name.git
+
+Step 2: Navigate into the project folder
+cd EnergyPrediction
+
+Step 3: Install dependencies
+npm install
+
+Step 4: Run the development server
+npm run dev
